@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDocConsole", "QDocConsole\QDocConsole.csproj", "{E406A996-B115-44EB-89B6-C0CAF77B1229}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDoccsConsole", "QDocConsole\QDoccsConsole.csproj", "{E406A996-B115-44EB-89B6-C0CAF77B1229}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDocLib", "QDocLib\QDocLib.csproj", "{33001EDC-A87D-4139-9C6B-B39759BD7EDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDoccsLib", "QDocLib\QDoccsLib.csproj", "{33001EDC-A87D-4139-9C6B-B39759BD7EDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +19,11 @@ Global
 		{E406A996-B115-44EB-89B6-C0CAF77B1229}.Debug|x86.Build.0 = Debug|x86
 		{E406A996-B115-44EB-89B6-C0CAF77B1229}.Release|x86.ActiveCfg = Release|x86
 		{E406A996-B115-44EB-89B6-C0CAF77B1229}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$1.ResourceNamePolicy = FileFormatDefault
 	EndGlobalSection
 EndGlobal
