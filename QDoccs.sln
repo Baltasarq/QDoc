@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDocConsole", "QDocConsole\QDocConsole.csproj", "{E406A996-B115-44EB-89B6-C0CAF77B1229}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDocLib", "QDocLib\QDocLib.csproj", "{33001EDC-A87D-4139-9C6B-B39759BD7EDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33001EDC-A87D-4139-9C6B-B39759BD7EDE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33001EDC-A87D-4139-9C6B-B39759BD7EDE}.Debug|x86.Build.0 = Debug|Any CPU
+		{33001EDC-A87D-4139-9C6B-B39759BD7EDE}.Release|x86.ActiveCfg = Release|Any CPU
+		{33001EDC-A87D-4139-9C6B-B39759BD7EDE}.Release|x86.Build.0 = Release|Any CPU
+		{E406A996-B115-44EB-89B6-C0CAF77B1229}.Debug|x86.ActiveCfg = Debug|x86
+		{E406A996-B115-44EB-89B6-C0CAF77B1229}.Debug|x86.Build.0 = Debug|x86
+		{E406A996-B115-44EB-89B6-C0CAF77B1229}.Release|x86.ActiveCfg = Release|x86
+		{E406A996-B115-44EB-89B6-C0CAF77B1229}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
