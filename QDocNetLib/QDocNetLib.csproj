@@ -35,17 +35,23 @@
     <Compile Include="Persistence\XmlImporter.cs" />
     <Compile Include="Persistence\HtmlExporter.cs" />
     <Compile Include="Entity.cs" />
-    <Compile Include="Type.cs" />
     <Compile Include="Entities\Namespace.cs" />
     <Compile Include="Entities\Class.cs" />
     <Compile Include="Entities\Attribute.cs" />
     <Compile Include="Entities\Method.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Entities\Type.cs" />
+    <Compile Include="Entities\Property.cs" />
+    <Compile Include="PrimitiveTypes\String.cs" />
+    <Compile Include="PrimitiveTypes\Double.cs" />
+    <Compile Include="PrimitiveTypes\Char.cs" />
+    <Compile Include="PrimitiveTypes\Boolean.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Persistence\" />
     <Folder Include="Entities\" />
+    <Folder Include="PrimitiveTypes\" />
   </ItemGroup>
 </Project>

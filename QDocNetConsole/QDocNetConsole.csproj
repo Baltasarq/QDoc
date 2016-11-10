@@ -41,7 +41,7 @@
     <Folder Include="Ui\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QDoccsLib\QDocNetLib.csproj">
+    <ProjectReference Include="..\QDocNetLib\QDocNetLib.csproj">
       <Project>{33001EDC-A87D-4139-9C6B-B39759BD7EDE}</Project>
       <Name>QDocNetLib</Name>
     </ProjectReference>
