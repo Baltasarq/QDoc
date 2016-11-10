@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace QDocLib.Types
-{
+namespace QDocNetLib.Entities {
     public class Method: Member {
         public Method(string name)
             :base(name)
@@ -9,4 +8,3 @@ namespace QDocLib.Types
         }
     }
 }
-

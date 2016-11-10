@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QDocLib.Types {
+namespace QDocNetLib.Entities {
     public class Member: Entity {
         public Member(string name)
             :base(name)

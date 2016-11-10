@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QDocLib {
+namespace QDocNetLib {
     public class Entity {
         public Entity(string name)
         {

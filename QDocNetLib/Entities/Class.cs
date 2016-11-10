@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace QDocLib.Types {
+namespace QDocNetLib.Entities {
     public class Class: Type {
         public Class(string name)
             :base(name)

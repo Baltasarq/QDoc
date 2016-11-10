@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDoccsConsole", "QDoccsConsole\QDoccsConsole.csproj", "{E406A996-B115-44EB-89B6-C0CAF77B1229}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDocNetConsole", "QDocNetConsole\QDocNetConsole.csproj", "{E406A996-B115-44EB-89B6-C0CAF77B1229}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDoccsLib", "QDoccsLib\QDoccsLib.csproj", "{33001EDC-A87D-4139-9C6B-B39759BD7EDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QDocNetLib", "QDocNetLib\QDocNetLib.csproj", "{33001EDC-A87D-4139-9C6B-B39759BD7EDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

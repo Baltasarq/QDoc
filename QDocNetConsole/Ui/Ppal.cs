@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QDocConsole {
+namespace QDocNetConsole {
     class Ppal {
         static void Main(String[] args)
         {

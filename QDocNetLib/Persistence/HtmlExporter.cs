@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QDocLib.Persistence {
+namespace QDocNetLib.Persistence {
     public class HtmlExporter {
         public HtmlExporter(Entity entity)
         {
