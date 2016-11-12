@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace QDocNetLib.Entities {
+	using System;
 
-namespace QDocNetLib.Entities {
     /// <summary>
     /// Represents any member, including attributes,
     /// properties and methods.

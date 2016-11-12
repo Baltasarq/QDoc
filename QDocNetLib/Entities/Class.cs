@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace QDocNetLib.Entities {
+	using System.Collections.Generic;
 
-namespace QDocNetLib.Entities {
     /// <summary>
     /// Represents a class.
     /// </summary>
-    public class Class: Type {
+    public class Class: Entity {
         /// <summary>
         /// Initializes a new instance of the <see cref="QDocNetLib.Entities.Class"/> class.
         /// </summary>
@@ -13,6 +12,7 @@ namespace QDocNetLib.Entities {
         public Class(string name)
             :base(name)
         {
+			this.members = new List<Member>();
         }
 
         /// <summary>

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿namespace QDocNetLib.Entities {
+	using System;
+	using System.Text;
+	using System.Collections.Generic;
 
-namespace QDocNetLib.Entities {
     /// <summary>
     /// Represents a method within a class.
     /// </summary>
@@ -38,6 +38,7 @@ namespace QDocNetLib.Entities {
         public Method(string name, Type type)
             :base(name, type)
         {
+			this.parameters = new List<Param>();
         }
 
         /// <summary>
