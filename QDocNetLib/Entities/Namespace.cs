@@ -15,10 +15,12 @@
 
 		public Entity[] Types {
             get {
-				var toret = new Entity[ this.entities.Count ];
-				this.entities.CopyTo( toret, 0 );
-                return toret;
+				return this.entities.ToArray();
             }
+			set {
+				this.entities.Clear();
+				this.entities.AddRange( value );
+			}
         }
 
         private List<Entity> entities;

@@ -30,9 +30,7 @@
         /// <value>The members, as a primitive array.</value>
         public Member[] Members {
             get {
-                var toret = new Member[ this.members.Count ];
-                this.members.CopyTo( toret, 0 );
-                return toret;
+				return this.members.ToArray();
             }
         }
 

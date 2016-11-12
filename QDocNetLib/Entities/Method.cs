@@ -1,4 +1,5 @@
-﻿namespace QDocNetLib.Entities {
+﻿using QDocLib;
+namespace QDocNetLib.Entities {
 	using System;
 	using System.Text;
 	using System.Collections.Generic;
@@ -56,11 +57,21 @@
         /// <value>The parameters, as a primitive array.</value>
         public Param[] Params {
             get {
-                var toret = new Param[ this.parameters.Count ];
-                this.parameters.CopyTo( toret, 0 );
-                return toret;
+				return this.parameters.ToArray();
             }
+			set {
+				this.parameters.Clear();
+				this.parameters.AddRange( value );
+			}
         }
+
+		/// <summary>
+		/// Gets or sets the return documentation.
+		/// </summary>
+		/// <value>The return documentation, as a string.</value>
+		public Documentation ReturnDocumentation {
+			get; set;
+		}
 
         public override string ToString()
         {
