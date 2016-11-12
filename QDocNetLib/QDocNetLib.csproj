@@ -8,6 +8,7 @@
     <RootNamespace>QDocLib</RootNamespace>
     <AssemblyName>QDocLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ApplicationManifest>AssemblyReflector.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,7 @@
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Documentation.cs" />
+    <Compile Include="AssemblyReflector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
