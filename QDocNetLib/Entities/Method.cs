@@ -1,5 +1,4 @@
-﻿using QDocLib;
-namespace QDocNetLib.Entities {
+﻿namespace QDocNetLib.Entities {
 	using System;
 	using System.Text;
 	using System.Collections.Generic;
@@ -13,7 +12,7 @@ namespace QDocNetLib.Entities {
         /// </summary>
         public class Param: Entity {
             /// <summary>
-            /// Initializes a new instance of the <see cref="QDocNetLib.Entities.Method+Param"/> class.
+            /// Initializes a new instance of the <see cref="QDocNetLib.Entities.Method.Param"/> class.
             /// </summary>
             /// <param name="name">The name of the parameter.</param>
             /// <param name="type">The type of the parameter.</param>
@@ -39,30 +38,15 @@ namespace QDocNetLib.Entities {
         public Method(string name, Type type)
             :base(name, type)
         {
-			this.parameters = new List<Param>();
+			this.Parameters = new Container<Param>();
         }
-
+        
         /// <summary>
-        /// Add a new param to this method.
+        /// Gets the parameters in the method.
         /// </summary>
-        /// <param name="m">The new param, as a Param instance.</param>
-        public void Add(Param m)
-        {
-            this.parameters.Add( m );
-        }
-
-        /// <summary>
-        /// Gets the params of this method.
-        /// </summary>
-        /// <value>The parameters, as a primitive array.</value>
-        public Param[] Params {
-            get {
-				return this.parameters.ToArray();
-            }
-			set {
-				this.parameters.Clear();
-				this.parameters.AddRange( value );
-			}
+        /// <value>The parameters.</value>
+        public Container<Param> Parameters {
+            get; private set;
         }
 
 		/// <summary>
@@ -73,19 +57,21 @@ namespace QDocNetLib.Entities {
 			get; set;
 		}
 
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:QDocNetLib.Entities.Method"/>.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:QDocNetLib.Entities.Method"/>.</returns>
         public override string ToString()
         {
             StringBuilder toret = new StringBuilder();
 
             toret.Append( base.ToString() );
             toret.Append( '(' );
-            toret.Append( StringFromEntityCollection( this.Params, ", " ) );
+            toret.Append( this.Parameters.ToString() );
             toret.Append( ')' );
 
 
             return toret.ToString();
         }
-
-        private List<Param> parameters;
     }
 }

@@ -10,7 +10,7 @@
         /// Initializes a new instance of the <see cref="QDocNetLib.Entities.Member"/> class.
         /// </summary>
         /// <param name="name">The name of the member.</param>
-        /// <param name="name">The type of the member.</param>
+        /// <param name="type">The <see cref="Type"/> of the member.</param>
         public Member(string name, Type type)
             :base(name)
         {
@@ -25,6 +25,10 @@
             get; set;
         }
 
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:QDocNetLib.Entities.Member"/>.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:QDocNetLib.Entities.Member"/>.</returns>
         public override string ToString()
         {
             return string.Format(

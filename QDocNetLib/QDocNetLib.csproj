@@ -5,10 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{33001EDC-A87D-4139-9C6B-B39759BD7EDE}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>QDocLib</RootNamespace>
-    <AssemblyName>QDocLib</AssemblyName>
+    <RootNamespace>QDocNetLib</RootNamespace>
+    <AssemblyName>QDocNetLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ApplicationManifest>AssemblyReflector.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,6 +18,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\Debug\QDocNetLib.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -43,7 +43,7 @@
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Documentation.cs" />
-    <Compile Include="AssemblyReflector.cs" />
+    <Compile Include="Entities\Container.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

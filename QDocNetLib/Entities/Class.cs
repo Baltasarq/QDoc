@@ -12,28 +12,15 @@
         public Class(string name)
             :base(name)
         {
-			this.members = new List<Member>();
+			this.Members = new Container<Member>();
         }
-
+        
         /// <summary>
-        /// Add a new member to this class.
+        /// Gets or modifies the members of the class.
         /// </summary>
-        /// <param name="m">The new member, as a Member instance.</param>
-        public void Add(Member m)
-        {
-            this.members.Add( m );
+        /// <value>The members.</value>
+        public Container<Member> Members {
+            get; private set;
         }
-
-        /// <summary>
-        /// Gets the members of this class.
-        /// </summary>
-        /// <value>The members, as a primitive array.</value>
-        public Member[] Members {
-            get {
-				return this.members.ToArray();
-            }
-        }
-
-        private List<Member> members;
     }
 }
