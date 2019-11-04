@@ -1,4 +1,5 @@
-﻿using System;
+﻿// QDocNet - (c) 2017 Baltasar MIT License <baltasarq@gmail.com>
+
 
 namespace QDocNetLib.Persistence {
     /// <summary>
@@ -8,10 +9,10 @@ namespace QDocNetLib.Persistence {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:QDocNetLib.Persistence.HtmlExporter"/> class.
         /// </summary>
-        /// <param name="entity">The root entity in which to start.</param>
-        public HtmlExporter(Entity entity)
+        /// <param name="unit">The root entity in which to start.</param>
+        public HtmlExporter(Unit unit)
         {
-            this.Entity = entity;
+            this.Unit = unit;
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace QDocNetLib.Persistence {
         /// Gets or sets the root entity for HTML exporting.
         /// </summary>
         /// <value>The entity.</value>
-        public Entity Entity {
+        public Unit Unit {
             get; set;
         }
     }

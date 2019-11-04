@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2019.2/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.2/system/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_QDocNet.696351213.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="QDocNet.sln" t="IncludeFlat" />
+      <e p="QDocNetConsole" t="IncludeRecursive">
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="QDocNetConsole.csproj" t="IncludeRecursive" />
+        <e p="Ui" t="Include">
+          <e p="Ppal.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+      </e>
+      <e p="QDocNetGui" t="IncludeRecursive">
+        <e p="QDocNetGui.csproj" t="IncludeRecursive" />
+        <e p="Res" t="Include">
+          <e p="about_icon.png" t="Include" />
+          <e p="app_icon.png" t="Include" />
+          <e p="open_icon.png" t="Include" />
+          <e p="save_icon.png" t="Include" />
+        </e>
+        <e p="UI" t="Include">
+          <e p="DocTreeNode.cs" t="Include" />
+          <e p="MainFormController.cs" t="Include" />
+          <e p="MainFormView.cs" t="Include" />
+          <e p="Ppal.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+      </e>
+      <e p="QDocNetLib" t="IncludeRecursive">
+        <e p="Documentation.cs" t="Include" />
+        <e p="Entity.cs" t="Include" />
+        <e p="Helper.cs" t="Include" />
+        <e p="Id.cs" t="Include" />
+        <e p="LibInfo.cs" t="Include" />
+        <e p="Persistence" t="Include">
+          <e p="HtmlExporter.cs" t="Include" />
+          <e p="XmlImporter.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="QDocNetLib.csproj" t="IncludeRecursive" />
+        <e p="Unit.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

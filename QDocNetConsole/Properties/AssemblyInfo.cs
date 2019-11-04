@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("QDocConsole")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Documentation converter console")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("baltasarq")]
+[assembly: AssemblyCopyright("dev::baltasarq")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

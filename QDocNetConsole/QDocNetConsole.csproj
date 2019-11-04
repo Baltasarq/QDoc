@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>QDocNetConsole</RootNamespace>
     <AssemblyName>QDocNetConsole</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <StartupObject>QDocNetConsole.Ui.Ppal</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

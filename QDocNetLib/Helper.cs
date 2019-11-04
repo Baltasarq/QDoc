@@ -1,21 +1,30 @@
-﻿using System;
-using System.IO;
+﻿// QDocNet - (c) 2017 Baltasar MIT License <baltasarq@gmail.com>
 
 namespace QDocNetLib {
+    using System.IO;
+
     /// <summary>
     /// Facade class with helper functions
     /// </summary>
     public static class Helper {
         /// <summary>
-        /// Loads from an XML doc file.
+        /// Loads documentation from an XML doc file and its assembly.
         /// </summary>
-        /// <returns>The root Entity (a namespace).</returns>
-        /// <param name="path">The PATH in which the XML lies.</param>
-        public static Entity LoadFromFile(string path)
+        /// <returns>The root <see cref="Entity"/>.</returns>
+        /// <param name="xmlPath">The path for the assembly.</param>
+        public static Unit LoadDocs(string xmlPath)
         {
-            var importer = new Persistence.XmlImporter( path );
-			Console.WriteLine( "Reading " + path );
+            if ( !File.Exists( xmlPath ) ) {
+                throw new IOException( "'" + xmlPath + "' not found." );
+            }
+            
+            
+            if ( !File.Exists( xmlPath ) ) {
+                throw new IOException( "'" + xmlPath + "' not found." );
+            }
+	        
+            var importer = new Persistence.XmlImporter( xmlPath );            
             return importer.Import();
-        }
+        }        
     }
 }
