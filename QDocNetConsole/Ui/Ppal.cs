@@ -4,6 +4,7 @@ namespace QDocNetConsole.Ui {
     using System;
     using System.IO;
     using QDocNetLib;
+    using QDocNetLib.Persistence;
 
     class Ppal {
         static void Main(String[] args)
@@ -15,8 +16,10 @@ namespace QDocNetConsole.Ui {
                 if ( args.Length == 1 ) {
                     Unit unit = Helper.LoadDocs( args[ 0 ] );
                     
-                    Console.WriteLine( "Reading..." );
-                    Console.WriteLine( unit );
+                    Console.WriteLine( "Read... {0}", unit.Name );
+                    Console.WriteLine( "Creating..." );
+
+                    new HtmlExporter( unit, "." ).SaveTo();
                 }
             } catch(IOException exc)
             {

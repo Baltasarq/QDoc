@@ -9,7 +9,7 @@
     public class DocTreeNode: TreeNode
     {
         public DocTreeNode(Entity entity)
-            : base( entity.Id.Name )
+            : base( ComposeNodeName( entity ) )
         {
             this.Entity = entity;
         }
@@ -20,6 +20,11 @@
         /// <value>The <see cref="Entity"/> object.</value>
         public Entity Entity {
             get; set;
+        }
+
+        private static string ComposeNodeName(Entity entity)
+        {
+            return entity.Id.CharType + ": " + entity.Id.Name;
         }
     }
 }

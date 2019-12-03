@@ -14,5 +14,14 @@ namespace QDocNetLib {
 
         /// <summary>Author.</summary>
         public const string Author = "baltasarq@gmail.com";
+
+        /// <summary>
+        /// Builds the copyright message: Name + version + author.
+        /// </summary>
+        /// <returns>The copyright message, as a string.</returns>
+        public static string BuildCopyrightMessage()
+        {
+            return Name + " v" + Version + " (c) " + Author;
+        }
     }
 }

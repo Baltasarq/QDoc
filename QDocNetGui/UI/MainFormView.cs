@@ -1,5 +1,6 @@
 ﻿// QDocNet - (c) 2018 Baltasar MIT License <baltasarq@gmail.com>
 
+
 namespace QDocNetGui.UI {
     using System;
     using System.Diagnostics;
@@ -32,19 +33,19 @@ namespace QDocNetGui.UI {
         {
             try {
                 this.AppIcon = new Bitmap(
-                    System.Reflection.Assembly.GetEntryAssembly( ).
+                    System.Reflection.Assembly.GetEntryAssembly().
                     GetManifestResourceStream( "QDocNetGui.Res.app_icon.png" ) );
 
                 this.openIcon = new Bitmap(
-                    System.Reflection.Assembly.GetEntryAssembly( ).
+                    System.Reflection.Assembly.GetEntryAssembly().
                     GetManifestResourceStream( "QDocNetGui.Res.open_icon.png" ) );
 
                 this.saveIcon = new Bitmap(
-                    System.Reflection.Assembly.GetEntryAssembly( ).
+                    System.Reflection.Assembly.GetEntryAssembly().
                     GetManifestResourceStream( "QDocNetGui.Res.save_icon.png" ) );
 
                 this.aboutIcon = new Bitmap(
-                    System.Reflection.Assembly.GetEntryAssembly( ).
+                    System.Reflection.Assembly.GetEntryAssembly().
                     GetManifestResourceStream( "QDocNetGui.Res.about_icon.png" ) );
 
             } catch(Exception e)
@@ -156,7 +157,7 @@ namespace QDocNetGui.UI {
             this.Icon = Icon.FromHandle( this.AppIcon.GetHicon() );
         }
 
-        private Panel BuildAboutPanel()
+        Panel BuildAboutPanel()
         {
             // Sizes
             Graphics grf = this.CreateGraphics();
@@ -202,7 +203,7 @@ namespace QDocNetGui.UI {
         }
 
         public Panel PnlAbout {
-            get; private set;
+            get; set;
         }
 
         public Bitmap AppIcon {
@@ -210,39 +211,39 @@ namespace QDocNetGui.UI {
         }
 
         public TreeView TreeView {
-            get; private set;
+            get; set;
         }
 
         public SplitContainer SplitContainer {
-            get; private set;
+            get; set;
         }
 
         public Font BaseFont {
-            get; private set;
+            get; set;
         }
 
         public ToolBar TbBar {
-            get; private set;
+            get; set;
         }
 
         public ToolBarButton TbbOpen {
-            get; private set;
+            get; set;
         }
 
         public ToolBarButton TbbSave {
-            get; private set;
+            get; set;
         }
 
         public ToolBarButton TbbAbout {
-            get; private set;
+            get; set;
         }
 
         public Label LblAbout {
-            get; private set;
+            get; set;
         }
         
         public TextBox TbDoc {
-            get; private set;
+            get; set;
         }
 
         Bitmap openIcon;

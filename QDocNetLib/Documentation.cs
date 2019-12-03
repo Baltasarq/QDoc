@@ -1,6 +1,7 @@
 ﻿// QDocNet - (c) 2017 Baltasar MIT License <baltasarq@gmail.com>
 
 namespace QDocNetLib {
+    using System;
     using System.Xml.Linq;
 	using System.Collections.Generic;
 
@@ -46,7 +47,7 @@ namespace QDocNetLib {
                     return this.contents;
                 }
                 set {
-                    this.contents = value.Trim();
+                    this.contents = PrepareDocPiece( value );
                 }
             }
             
@@ -74,13 +75,12 @@ namespace QDocNetLib {
                     var attrCref = element.Attribute( "cref" );
                     
                     if ( attrCref != null ) {
-                        string contents = attrCref.Value;
-                        toret = new SeeModifier( pos, contents );
+                        toret = new SeeModifier( pos, attrCref.Value );
                     } else {
-                        throw new System.ArgumentException( "malformed modifier: " + cmd );
+                        throw new ArgumentException( "malformed modifier: " + cmd );
                     }
                 } else {
-                    throw new System.ArgumentException( "unexpected modifier: " + cmd );
+                    toret = new UnknownModifier( pos, cmd, element.Value );
                 }
                 
                 return toret;
@@ -114,11 +114,31 @@ namespace QDocNetLib {
                 }
             }
         }
+
+        public class UnknownModifier: Modifier {
+            public UnknownModifier(int pos, string modifier, string contents)
+                :base( pos, contents )
+            {
+                this.modifier = modifier;
+            }
+
+            /// <summary>
+            /// Gets the command.
+            /// </summary>
+            /// <value>The command.</value>
+            public override string Command {
+                get {
+                    return this.modifier;
+                }
+            }
+
+            string modifier;
+        }
     
         /// <summary>
         /// A piece of documentation.
         /// </summary>
-        public sealed class DocPiece {
+        public class DocPiece {
             DocPiece()
             {
                 this.modifiers = new List<Modifier>();
@@ -164,7 +184,7 @@ namespace QDocNetLib {
                     return this.contents;
                 }
                 set {
-                    this.contents = value.Trim();
+                    this.contents = PrepareDocPiece( value );
                 }
             }
             
@@ -211,24 +231,35 @@ namespace QDocNetLib {
             {
                 int pos = 0;
                 string toret = "";
-                
-                if ( !string.IsNullOrWhiteSpace( this.Name ) ) {
-                    toret += this.Name + ": ";
+
+                if ( !string.IsNullOrWhiteSpace( this.Contents )
+                  || this.Modifiers.Length > 0 )
+                {
+                    if ( !string.IsNullOrWhiteSpace( this.Name ) ) {
+                        toret += this.Name + ": ";
+                    }
+                    
+                    foreach(Modifier m in this.Modifiers) {
+                        toret += this.Contents.Substring( pos, m.Pos - pos );
+                        toret += " " + m;
+                        pos = m.Pos;
+                    }
+                    
+                    toret += this.Contents.Substring( pos );
                 }
-                
-                foreach(Modifier m in this.Modifiers) {
-                    toret += this.Contents.Substring( pos, m.Pos - pos );
-                    toret += " " + m;
-                    pos = m.Pos;
-                }
-                
-                toret += this.Contents.Substring( pos );
                 
                 return toret;
             }
             
             readonly List<Modifier> modifiers;
             string contents;
+        }
+
+        /// <summary>A default, empty doc piece.</summary>
+        public sealed class EmptyDocPiece: DocPiece {
+            public EmptyDocPiece()
+                : base( "", "" )
+            {}
         }
     
         /// <summary>
@@ -249,7 +280,6 @@ namespace QDocNetLib {
 		Documentation(string id)
             : this( new Id( id ) )
 		{
-			this.Id = new Id( id );
 		}
         
         /// <summary>
@@ -260,6 +290,14 @@ namespace QDocNetLib {
         {
             this.Id = id;
             this.attributes = new Dictionary<Attribute, DocPiece>();
+            this.parameters = new Dictionary<string, DocPiece>();
+
+            // Initialise the attributes dictionary with default info
+            foreach(Attribute attr in Enum.GetValues(typeof(Attribute))) {
+                this.attributes[ attr ] = new EmptyDocPiece();
+            }
+
+            return;
         }
         
         /// <summary>
@@ -271,16 +309,31 @@ namespace QDocNetLib {
         {
             this.attributes.Add( attr, contents );
         }
+
+        /// <summary>
+        /// Adds the specified param.
+        /// </summary>
+        /// <param name="param">The <see cref="DocPiece"/> for the parameter.</param>
+        public void AddParameter(DocPiece param)
+        {
+            this.parameters.Add( param.Name, param );
+        }
+
+        public DocPiece[] Parameters {
+            get {
+                return new List<DocPiece>( this.parameters.Values ).ToArray();
+            }
+        }
         
         /// <summary>
         /// Gets the associated <see cref="DocPiece"/> to that <see cref="Attribute"/>.
+        /// If no info was assigned, an empty string is returned.
         /// </summary>
         /// <param name="attr">The <see cref="Attribute"/>.</param>
         public DocPiece this[Attribute attr]
         {
             get {
-                this.attributes.TryGetValue( attr, out DocPiece toret );
-                return toret;
+                return this.attributes[ attr ];
             }
         }
         
@@ -301,8 +354,12 @@ namespace QDocNetLib {
             var toret = new System.Text.StringBuilder();
             
             foreach(Attribute key in this.attributes.Keys) {
-                toret.Append( this.attributes[ key ] );
-                toret.Append( "\n\t" );
+                string text = this.attributes[ key ].ToString().Trim();
+
+                if ( !string.IsNullOrWhiteSpace( text ) ) {
+                    toret.Append( text );
+                    toret.Append( "\n\t" );
+                }
             }
             
             return toret.ToString().Trim();
@@ -324,28 +381,45 @@ namespace QDocNetLib {
         /// <returns>The xml contents, as a <see cref="DocPiece"/>.</returns>
         /// <param name="element">An <see cref="T:System.Xml.Linq.XElement"/>.</param>
         /// <param name="attr">The <see cref="T:Attribute"/> for the doc piece to extract.</param>
-        static DocPiece ExtractXmlFor(XElement element, Attribute attr)
+        static DocPiece[] ExtractXmlFor(XElement element, Attribute attr)
         {
-            var contentsNode = element.Element( GetXmlTagFor( attr ) );
-            var toret = new DocPiece( attr.ToString(), "" );
-            XNode child = contentsNode.FirstNode;
-            
-            while( child != null ) {
-	            if ( child is XText text ) {
-	                toret.Contents += text.Value;
-	            }
-                else
-                if ( child is XElement subElement) {    
-                    toret.Add(
-                        Modifier.Create(
-                            toret.Contents.Length,
-                            subElement ) );
-	            }
-                
-                child = child.NextNode;
+            var toret = new List<DocPiece>();
+            var contentsNodes = element.Elements( GetXmlTagFor( attr ) );
+
+            if ( contentsNodes != null ) {
+                foreach (XElement contents in contentsNodes) {
+                    XNode child = contents.FirstNode;
+                    string name = attr.ToString();
+                    XAttribute attrName = contents.Attribute( "name" );
+
+                    if ( attr == Attribute.Param
+                      && attrName != null )
+                    {
+                        name = attrName.Value;
+                    }
+
+                    var docPiece = new DocPiece( name, "" );
+
+                    toret.Add( docPiece );
+
+                    while( child != null ) {
+        	            if ( child is XText text ) {
+                            docPiece.Contents += text.Value;
+        	            }
+                        else
+                        if ( child is XElement subElement) {    
+                            docPiece.Add(
+                                Modifier.Create(
+                                    docPiece.Contents.Length,
+                                    subElement ) );
+        	            }
+                        
+                        child = child.NextNode;
+                    }
+                }
             }
             
-            return toret;
+            return toret.ToArray();
         }
         
         /// <summary>
@@ -357,10 +431,30 @@ namespace QDocNetLib {
         public static Documentation Create(string name, XElement element)
         {
             var toret = new Documentation( name );
-            DocPiece summaryDoc = ExtractXmlFor( element, Attribute.Summary );
-            
+
             // Extract summary, always present
-            toret.attributes[ Attribute.Summary ] = summaryDoc;
+            DocPiece[] summaryDoc = ExtractXmlFor( element, Attribute.Summary );
+
+            if ( summaryDoc.Length > 0 ) {
+                toret.attributes[ Attribute.Summary ] = summaryDoc[ 0 ];
+            }
+
+            // Extract returns, present if that's a method
+            DocPiece[] returnsDoc = ExtractXmlFor( element, Attribute.Returns );
+
+            if ( returnsDoc.Length > 0 ) {
+                toret.attributes[ Attribute.Returns ] = returnsDoc[ 0 ];
+            }
+
+            // Extract params, present if that's a method
+            DocPiece[] paramsDoc = ExtractXmlFor( element, Attribute.Param );
+
+            if ( paramsDoc.Length > 0 ) {
+                foreach(DocPiece paramDoc in paramsDoc) {
+                    toret.AddParameter( paramDoc );
+                }
+            }
+
             
             return toret;
         }
@@ -374,7 +468,26 @@ namespace QDocNetLib {
         {
             return new Documentation( id );
         }
+
+        /// <summary>
+        /// Eliminates certain chars and gives basic formatting.
+        /// </summary>
+        /// <returns>The formatted document piece.</returns>
+        /// <param name="docPiece">A string containing a document piece.</param>
+        static string PrepareDocPiece(string docPiece)
+        {
+            string delimiters = "\n\r\t";
+
+            docPiece = docPiece.Trim();
+
+            foreach(char delimiter in delimiters) {
+                docPiece = docPiece.Replace( delimiter, ' ' );
+            }
+
+            return docPiece;
+        }
         
         readonly Dictionary<Attribute, DocPiece> attributes;
+        readonly Dictionary<string, DocPiece> parameters;
 	}
 }

@@ -252,11 +252,10 @@ namespace QDocNetLib.Persistence {
         {
             foreach(Entity entity in allEntities.Values) {
                 try {
-	                Entity parent = allEntities[ entity.Id.Parent ];
-	                
-	                if ( parent != null ) {
-	                    parent.Add( entity );
-	                }
+                    if ( allEntities.TryGetValue( entity.Id.Parent, out Entity parent ) )
+                    {
+                        parent.Add( entity );
+                    }
                 } catch(System.ArgumentException) {
                     continue;
                 }

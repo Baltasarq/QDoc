@@ -41,7 +41,15 @@
             TreeNode node = this.Form.TreeView.SelectedNode;
         
             if ( node is DocTreeNode docNode ) {
-                this.Form.TbDoc.Text = docNode.Entity.Docs.ToString();
+                var docs = new System.Text.StringBuilder();
+
+                docs.Append( docNode.Entity.Id.ToString() );
+                docs.Append( ": " );
+                docs.Append( docNode.Entity.Type );
+                docs.AppendLine();
+                docs.AppendLine( docNode.Entity.Docs.ToString() );
+
+                this.Form.TbDoc.Text = docs.ToString();
             }
             
             return;
@@ -62,13 +70,9 @@
 
         void OnSave()
         {
-            using( var saveDlg = new SaveFileDialog() ) {
-                saveDlg.Filter = "html (*.html)|*.html";
-                saveDlg.DefaultExt = "html";
-                saveDlg.CheckPathExists = true;
-                
+            using( var saveDlg = new FolderBrowserDialog() ) {                
                 if ( saveDlg.ShowDialog() == DialogResult.OK ) {
-                    new HtmlExporter( this.Unit ).SaveTo( saveDlg.FileName );
+                    new HtmlExporter( this.Unit, saveDlg.SelectedPath ).SaveTo();
                 }
             }
         }
@@ -93,14 +97,16 @@
         
         void LoadDocs()
         {
+            this.Form.TreeView.Nodes.Clear();
+
             if ( this.Unit != null ) {
                 TreeNode root = this.Form.TreeView.Nodes.Add( this.Unit.Name );
                 
-                foreach(Entity cls in this.Unit.Classes) {
-                    var subNode = new DocTreeNode( cls );
+                foreach(Entity entity in this.Unit.Classes) {
+                    var subNode = new DocTreeNode( entity );
                     
                     root.Nodes.Add( subNode );
-                    this.LoadEntity( subNode, cls );
+                    this.LoadEntity( subNode, entity );
                 }
                 
                 root.Expand();

@@ -47,5 +47,11 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Persistence\" />
+    <Folder Include="Res\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Res\index.html" />
+    <EmbeddedResource Include="Res\entity.html" />
+    <EmbeddedResource Include="Res\namespace.html" />
   </ItemGroup>
 </Project>
